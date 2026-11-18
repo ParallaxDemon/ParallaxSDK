@@ -3,8 +3,8 @@ local.properties
 .idea/
 .DS_Store
 build/
-FeaturesticBox/build/
-FeaturesticBox/.cxx/
+TeamDarkCore/build/
+TeamDarkCore/.cxx/
 *.jar
 *.aar
 merge_work_new/

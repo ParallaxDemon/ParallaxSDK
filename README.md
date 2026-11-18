@@ -1,6 +1,6 @@
-# FeaturesticBox Android SDK
+# TeamDarkCore Android SDK
 
-FeaturesticBox is the reusable Android library consumed by the Featurestic Loader application.
+TeamDarkCore is the reusable Android library consumed by the TeamDark Loader application.
 The project is configured for the current Android toolchain while retaining
 runtime support back to Android 7.0 (API 24).
 
@@ -23,7 +23,7 @@ The native memory alignment logic uses the runtime page size instead of assuming
 
 ## Device social authentication
 
-FeaturesticBox routes supported authentication surfaces to the authoritative app
+TeamDarkCore routes supported authentication surfaces to the authoritative app
 or browser installed on the phone. Existing device sessions can therefore be
 offered by the provider without copying cookies, passwords, account-manager data,
 or access tokens into the virtual app.
@@ -43,7 +43,7 @@ external activities, PendingIntents, WebViews, and callback packages are rejecte
 
 Authentication depends on provider policy and the client application's own
 developer-console configuration. Repackaging or cloning changes the effective
-Android package/signing identity; FeaturesticBox does not forge signatures, defeat
+Android package/signing identity; TeamDarkCore does not forge signatures, defeat
 Play Integrity, or extract sessions from another app.
 
 ## Build
@@ -52,28 +52,28 @@ Install JDK 17, Android SDK Platform 36, Build Tools 36.0.0, and NDK
 27.2.12479018, then run:
 
 ```bash
-./gradlew :FeaturesticBox:assembleRelease
+./gradlew :TeamDarkCore:assembleRelease
 ```
 
 The release AAR is written to
-`FeaturesticBox/build/outputs/aar/FeaturesticBox-release.aar`.
+`TeamDarkCore/build/outputs/aar/TeamDarkCore-release.aar`.
 
 For encrypted storage or client delivery, generate a fresh 32-byte key per
 client, Base64-encode it, keep it outside Git, and run:
 
 ```bash
-export FEATURESTIC_AAR_ENCRYPTION_KEY="<base64-32-byte-client-key>"
-./gradlew :FeaturesticBox:encryptReleaseAar
+export TEAMDARK_AAR_ENCRYPTION_KEY="<base64-32-byte-client-key>"
+./gradlew :TeamDarkCore:encryptReleaseAar
 ```
 
 The authenticated AES-256-GCM envelope is written to
-`FeaturesticBox/build/outputs/encrypted-aar/FeaturesticBox-v3-release.aar.pxa`.
+`TeamDarkCore/build/outputs/encrypted-aar/TeamDarkCore-v3-release.aar.pxa`.
 Before Gradle can consume it, the authorized client must decrypt it locally:
 
 ```bash
-export FEATURESTIC_AAR_ENCRYPTION_KEY="<same-client-key>"
-./gradlew :FeaturesticBox:decryptReleaseAar \
-  -PfeaturesticEncryptedAar=/secure/path/FeaturesticBox-v3-release.aar.pxa
+export TEAMDARK_AAR_ENCRYPTION_KEY="<same-client-key>"
+./gradlew :TeamDarkCore:decryptReleaseAar \
+  -PteamdarkEncryptedAar=/secure/path/TeamDarkCore-v3-release.aar.pxa
 ```
 
 Never reuse the panel encryption/signing private keys as an AAR delivery key.
@@ -101,7 +101,7 @@ endpoint secrecy—remains the actual panel-swap security boundary.
 
 Open `tools/panel-endpoint-generator.html` locally, enter the complete HTTPS API
 endpoint, and select **Generate secure config**. The offline tool creates both
-required replacements: the masked byte/mask/FNV block for `BoxCore.cpp` and the
+required replacements: the masked byte/mask/FNV block for `TeamDarkNativeCore.cpp` and the
 independent SHA-256 byte array for `SecureSdkApiClient.kt`. Replace both blocks,
 then rebuild and test the SDK. Updating only the native URL intentionally causes
 Java trust verification to fail closed.

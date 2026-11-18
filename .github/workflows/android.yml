@@ -33,11 +33,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build FeaturesticBox Release AAR
-        run: ./gradlew :FeaturesticBox:assembleRelease --no-daemon --stacktrace
+      - name: Build TeamDarkCore Release AAR
+        run: ./gradlew :TeamDarkCore:assembleRelease --no-daemon --stacktrace
 
       - name: Upload Release AAR
         uses: actions/upload-artifact@v4
         with:
-          name: FeaturesticBox-release-aar
-          path: FeaturesticBox/build/outputs/aar/*.aar
+          name: TeamDarkCore-release-aar
+          path: TeamDarkCore/build/outputs/aar/*.aar
